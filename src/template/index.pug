@@ -1,0 +1,169 @@
+extends _layout/layout.pug
+block main
+
+    main
+        section.home_welcome
+            .container
+                .row
+                    .col
+                        h1 
+                            |Hi there! We are the new kids on the block 
+                            br
+                            |and we build awesome websites and mobile apps.
+                        p
+                            a.btn.btn_orange(href="#") work with us!
+        section.home_services
+            .container
+                .row
+                    .col
+                        h2 services we provide
+                        p
+                            |We are working with both individuals and businesses from all over the globe 
+                            br
+                            |to create awesome websites and applications. 
+                .row
+                    - var services_index = 0;
+                    while services_index < 4
+                        .col-sm-6.col-md-3.services_item
+                            img(src="./img/home_icon_" + ++services_index + ".png", alt="")
+                            h3 Lorem ipsum dolor
+                            p Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis assumenda temporibus saepe, accusamus esse blanditiis.
+        section.home_team
+            .container
+                .row
+                    .col
+                        h2 meet out beautiful team
+                        p We are a small team of designers and developers, who help brands with big ideas.
+                .row
+                    - var team_index = 1
+                    while team_index < 5
+                        .col-sm-6.col-md-3
+                            img(src="./img/home_team_1_avatar.png", alt="")
+                            h3 Lorem ipsum dolor
+                            p.team_roles Lorem ipsum
+                            p.team_description Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis assumenda temporibus saepe, accusamus esse blanditiis.
+                            .row.no-gutters
+                                .col-3.btn_social_media_wrapper
+                                    p
+                                        a.btn.btn_social_media(href="#")    
+                                            i.fab.fa-facebook-f
+                                .col-3.btn_social_media_wrapper
+                                    p
+                                        a.btn.btn_social_media(href="#")    
+                                            i.fab.fa-twitter
+                                .col-3.btn_social_media_wrapper
+                                    p
+                                        a.btn.btn_social_media(href="#")    
+                                            i.fab.fa-linkedin-in
+                                .col-3.btn_social_media_wrapper
+                                    p
+                                        a.btn.btn_social_media(href="#")    
+                                            i.fas.fa-envelope
+                            - team_index++
+        section.home_skill
+            .container-fluid
+                .row
+                    .col
+                        h2 we got skill
+                        p 
+                            |Lorem ipsum dolor sit amet consectetur adipisicing elit 
+                            br
+                            |assumenda aperiam, asperiores magni.
+                .row
+                    - var title_index = 1
+                    each skill_percentage, skill_index in {1:'90', 2:'75', 3:'70', 4:'85'}
+                        .col-sm-6.col-md-3.circle_progress_wrapper
+                            div(class="circle_progress circle_progress_" + skill_index)
+                                span.circle_progress_left
+                                    span.circle_progress_bar
+                                span.circle_progress_right
+                                    span.circle_progress_bar
+                                .circle_progress_value= skill_percentage + '%'
+                            .home_skill_title
+                                case title_index
+                                    when 1
+                                        p web design
+                                    when 2
+                                        p html / css
+                                    when 3
+                                        p graphic design
+                                    when 4
+                                        p ui / ux
+                        - title_index++
+        
+        section.home_portfolio
+            .container
+                .row
+                    .col
+                        h2 our portfolio
+                        p 
+                            |Lorem ipsum dolor sit amet consectetur adipisicing elit 
+                            br
+                            |assumenda aperiam, asperiores magni.
+                .row
+                    .col.portfolio_menu_wrapper
+                        ul
+                            li.portfolio_menu_active 
+                                a(href="") all
+                            li 
+                                a(href="") web
+                            li 
+                                a(href="") apps
+                            li 
+                                a(href="") icons
+                .row.portfolio_works_wrapper
+                    each works_index in [1,2,3,4]
+                        .col-md-6
+                            img.img-fluid(src="./img/home_works_" + works_index + ".png", alt="")
+                            p Lorem ipsum dolor                    
+                .row
+                    .col
+                        p 
+                            a.btn.btn_green(href="#") load more projects         
+        
+        section.home_feedback
+            .container
+                .row
+                    .col
+                        h2 what people say about us
+                        p Our clients love us 
+                .row.feedback_wrapper
+                    each works_index in [1,2,3,4]
+                        .col-md-6
+                            .row
+                                .col-md-3.feedback_avatar_wrapper
+                                    img(src="./img/home_team_1_avatar.png").img-fluid
+                                .col-md-9
+                                    p.feedback_content "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis sunt atque blanditiis minima reiciendis, incidunt non ex sit nostrum quia quisquam totam quidem!"
+                                    .row
+                                        .col
+                                            p.feedback_name chanel iman
+                                    .row
+                                        .col
+                                            p.feedback_roles CEO of Pinterest
+
+        section.home_contact
+            .container
+                .row
+                    .col
+                        h2 get in touch
+                        p 1600 Pennsylvania Ave NW, Washington, DC 20500, United States of America. Tel: (202) 456-1111
+                .row
+                    .col
+                        form(action="#" method="post")
+                            .row
+                                .offset-md-1
+                                .col-md-5.textbox_wrapper
+                                    input(type="text" placeholder="Your Name" required)
+                                    span.required_icon *
+                                .col-md-5.textbox_wrapper
+                                    input(type="email" placeholder="Your Email" required)
+                                    span.required_icon *
+                            .row
+                                .offset-md-1
+                                .col-md-10.textbox_wrapper
+                                    textarea(placeholder="Your Message" required)
+                                    span.required_icon *
+                            .row
+                                .col
+                                    button(type="submit").btn.btn_blue send message

@@ -1,0 +1,479 @@
+//Defined color
+$tim: #87509c //Tím 
+$ngoc: #17c2a4 // Cyan
+$xamnhat: #e7f1f8 //Xám nhạt
+$vang: #ffdd99 // Vang 
+$do: #d74680 // Đỏ 
+$cam: #eb7d4b // Cam
+$xanh: #3c5499 // Xanh 
+
+$progress_size: 160px
+$progress_bar_size: 12px
+
+//Public CSS
+body
+    margin: 0px
+    font-family: 'Titillium Web', serif
+
+=home_section($section_background_color)
+    display: flex
+    align-items: center
+    justify-content: center
+    min-height: 368px       
+    background-color: $section_background_color
+    text-align: center
+
+=home_button($btn_background_color, $btn_text_color)
+    padding: 0.75rem 3.75rem
+    text-transform: uppercase
+    font-size: 0.75rem
+    font-weight: 600
+    background-color: $btn_background_color  
+    color: $btn_text_color      
+    box-shadow: -1px 3px 0px darken($btn_background_color, 5%)
+    border-radius: 3px 
+
+=home_title($title_color)
+    color: $title_color
+    text-transform: uppercase
+    letter-spacing: 4px
+    font-size: 2.2rem
+    font-weight: 700
+
+=home_sub_title($sub_title_color)
+    color: $sub_title_color
+    text-transform: uppercase
+    letter-spacing: 1px
+    font-size: 1.5rem
+    font-weight: 600
+
+=home_text($text_color)
+    color: $text_color
+    font-size: 1rem
+    font-weight: 300
+
+=home_before_line($line_color)
+    content: ''
+    display: block
+    position: absolute
+    width: 70px
+    height: 4px
+    background: darken($line_color,5%)
+    bottom: 0
+    left: 50%
+    transform: translateX(-50%)
+    margin-bottom: -15px
+
+=circle_progress($color, $percentage)
+    .circle_progress_right
+        .circle_progress_bar
+            border-color: $color 
+            @if $percentage < 50
+                transform: rotate(#{$percentage*3.6}deg)
+            @else
+                transform: rotate(180deg)
+    .circle_progress_left
+        .circle_progress_bar                
+            border-color: $color
+            @if $percentage <= 50
+                transform: rotate(0deg)
+            @else 
+                transform: rotate(#{$percentage*3.6 - 180}deg)
+
+=horizontal_menu($horizontal_menu_bg)
+    ul
+        margin: 0px
+        padding: 0px
+        font-size: 0px
+        li
+            display: inline-block
+            height: 30px
+            width: 70px
+            margin: 0px 5px
+            padding: 0px
+            text-transform: uppercase
+            list-style: none
+            font-size: 0.8rem
+            text-align: center
+            line-height: 30px
+            border-radius: 3px
+            transition: 0.3s ease
+            a 
+                display: block
+                text-decoration: none
+                font-weight: 400
+                color: white
+            &:hover
+                background-color: darken($horizontal_menu_bg, 15%)
+                transition: 0.3s ease
+                a
+                    text-decoration: none
+                    color: white
+
+=textbox_textarea($textbox_bg, $textbox_color)
+    width: 100%
+    height: 50px
+    line-height: 50px
+    outline: none
+    border: none
+    border-radius: 4px
+    background-color: $textbox_bg
+    color: $textbox_color
+    font-size: 1rem
+    padding-left: 10px
+
+=placeholder_style
+    color: white
+
+=placeholder_style_focus
+    opacity: 0
+
+=apply_placeholder 
+    &::-webkit-input-placeholder 
+        +placeholder_style
+    &:-moz-placeholder 
+        +placeholder_style
+    &::-moz-placeholder 
+        +placeholder_style
+    &:-ms-input-placeholder 
+        +placeholder_style
+    &:placeholder 
+        +placeholder_style
+    &:focus::-webkit-input-placeholder 
+        +placeholder_style_focus
+    &:focus:-moz-placeholder 
+        +placeholder_style_focus
+    &:focus::-moz-placeholder 
+        +placeholder_style_focus
+    &:focus:-ms-input-placeholder 
+        +placeholder_style_focus
+    &:focus:placeholder 
+        +placeholder_style_focus
+    
+   
+
+     
+
+//Private CSS
+
+//Header
+header 
+    position: fixed
+    z-index: 999
+    top: 0
+    left: 0
+    background-color: $tim
+    width: 100%
+    min-height: 120px
+    display: flex
+    align-items: center
+    +horizontal_menu($tim)
+    ul
+        li.menu_active
+            background-color: darken($tim, 15%)
+
+//Footer
+footer
+    display: flex
+    justify-content: center
+    align-items: center
+    text-align: center
+    background-color: darken($xanh, 5%)
+    font-size: 1rem
+    min-height: 90px
+    a
+        display: inline-block
+        margin: 0 2rem 0 2rem
+        text-decoration: none
+        font-weight: 600
+        color: white
+        transition: 0.3s ease
+        &:hover  
+            transition: 0.3s ease
+            text-decoration: none
+            color: lighten($xanh, 25%)
+
+//Welcome Section
+.home_welcome
+    +home_section($tim)
+    margin-top: 120px
+    h1       
+        font-size: 2.5rem
+        font-weight: 700
+        color: white
+    .btn_orange
+        +home_button($cam, white)
+        margin-top: 2rem
+
+//Services Section
+.home_services
+    +home_section($ngoc)
+    padding: 60px 0
+    .services_item
+        padding: 0 30px
+    h2
+        +home_title(white)
+        position: relative
+        margin-bottom: 25px
+        &:before
+            +home_before_line($ngoc)
+    img
+        margin-top: 50px
+        max-width: 130px
+    h3
+        +home_sub_title(white)
+        margin-top: 30px
+    p
+        +home_text(white)
+        margin-top: 15px
+
+//Team Section
+.home_team
+    +home_section($xamnhat)
+    padding: 60px 0
+    h2
+        +home_title(darken($xanh, 15%))
+        position: relative
+        margin-bottom: 25px
+        &:before
+            +home_before_line($xamnhat)
+    img
+        margin-top: 50px
+        max-width: 150px
+        border-radius: 50%
+    h3
+        +home_sub_title(darken($xanh, 15%))
+        margin-top: 30px
+    p
+        +home_text(darken($xanh, 30%))
+        margin-top: 15px    
+    p.team_roles 
+        +home_text(lighten($xanh, 5%))
+    p.team_description
+        +home_text(darken($xanh, 30%))
+    .btn_social_media_wrapper
+        display: flex
+        justify-content: center
+        align-items: center
+        .btn_social_media
+            background-color: #bdd1df
+            height: 35px
+            width: 35px
+            border-radius: 50%  
+            display: flex
+            align-items: center
+            justify-content: center
+            text-align: center
+            i
+                color: white
+                font-size: 1rem
+
+//Skill Section
+.home_skill
+    +home_section(white)
+    padding-top: 60px
+    padding-bottom: 140px
+    h2
+        +home_title(darken($xanh, 15%))
+        position: relative
+        margin-bottom: 25px
+        &:before
+            +home_before_line($xamnhat)
+        p
+            +home_text(darken($xanh, 30%))
+    .home_skill_title
+        +home_sub_title(darken($xanh, 15%))
+        font-weight: 700
+        position: absolute
+        bottom: -80px
+    .circle_progress_wrapper
+        margin-top: 80px
+        display: flex
+        align-items: center
+        justify-content: center
+        .circle_progress
+            width: $progress_size
+            height: $progress_size
+            position: relative
+            &:after
+                content: ''
+                display: block
+                width: 100%
+                height: 100%
+                border-radius: 50%
+                border: $progress_bar_size solid $xamnhat
+                position: absolute
+                top: 0
+                left: 0
+            span
+                width: 50%
+                height: 100%
+                overflow: hidden
+                position: absolute
+                top: 0
+                z-index: 1
+            .circle_progress_bar
+                width: 100%
+                height: 100%
+                border-width: $progress_bar_size
+                border-style: solid
+                position: absolute
+                top: 0
+            .circle_progress_value
+                width: 100%
+                height: 100%
+                border-radius: 50%
+                font-size: 3rem
+                color: darken($xanh, 15%)
+                text-align: center
+                position: absolute
+                top: 0
+                left: 0
+                display: flex
+                justify-content: center
+                align-items: center
+            .circle_progress_left
+                left: 1px
+                .circle_progress_bar
+                    left: 100%
+                    border-top-right-radius: ($progress_size + $progress_bar_size)/2
+                    border-bottom-right-radius: ($progress_size + $progress_bar_size)/2
+                    border-left: 0
+                    transform-origin: center left
+            .circle_progress_right
+                right: 0
+                .circle_progress_bar
+                    left: -100%
+                    border-top-left-radius: ($progress_size + $progress_bar_size)/2
+                    border-bottom-left-radius: ($progress_size + $progress_bar_size)/2
+                    border-right: 0
+                    transform-origin: center right
+        .circle_progress_1
+            +circle_progress($xanh, 90)
+        .circle_progress_2
+            +circle_progress($do, 75)
+        .circle_progress_3
+            +circle_progress($ngoc, 70)
+        .circle_progress_4
+            +circle_progress($cam, 85)
+        
+//Portfolio section
+.home_portfolio
+    +home_section($vang)
+    padding: 60px 0
+    h2
+        +home_title(darken($xanh, 15%))
+        position: relative
+        margin-bottom: 25px
+        &:before
+            +home_before_line(darken($vang, 50%))
+    p
+        +home_text(darken($xanh, 15%))
+        margin-top: 15px
+        margin-bottom: 40px
+    .portfolio_menu_wrapper
+        +horizontal_menu($vang)
+        ul
+            li
+                background-color: #ebc985
+                a
+                    font-size: 1rem
+                    color: darken($xanh, 15%)
+                &:hover
+                    background-color: #fff
+                    a
+                        color: darken($xanh, 15%)
+            li.portfolio_menu_active
+                background-color: #fff
+                a
+                    color: darken($xanh, 15%)
+    .portfolio_works_wrapper
+        margin-top: 3.5rem
+        p 
+            +home_sub_title(darken($xanh, 15%))
+            font-weight: 600
+            font-size: 1.3rem
+            margin: 20px 0 50px 0
+    .btn_green
+        +home_button($ngoc, white)
+
+//Feedback section
+.home_feedback
+    +home_section($do)
+    padding: 60px 0 0 0
+    h2
+        +home_title(white)
+        position: relative
+        margin-bottom: 25px
+        &:before
+            +home_before_line(darken($do, 10%))
+            width: 100px
+    p
+        +home_text(white)
+        margin-top: 15px
+        margin-bottom: 40px 
+    .feedback_wrapper
+        text-align: left
+        .feedback_avatar_wrapper
+            display: flex
+            justify-content: center
+            align-items: start
+        img
+            display: block
+            border-radius: 50%
+        .feedback_content
+            font-style: italic
+            font-size: 1.2rem
+            margin: 0
+            text-align: justify
+        .feedback_name
+            +home_sub_title(white)
+            font-weight: 700
+            margin: 0
+            margin-top: 20px
+        .feedback_roles
+            font-size: 1.1rem
+            font-weight: 600
+            color: $vang
+            letter-spacing: 0.5px
+            margin: 0
+            margin-bottom: 100px
+
+//Contact section
+.home_contact
+    +home_section($xanh)
+    padding: 60px 0
+    h2
+        +home_title(white)
+        position: relative
+        margin-bottom: 25px
+        &:before
+            +home_before_line(darken($xanh, 10%))
+            width: 100px
+    p
+        +home_text(white)
+        margin-top: 15px
+        margin-bottom: 40px 
+    input
+        +textbox_textarea(darken($xanh, 15%), white)
+        +apply_placeholder
+    textarea
+        min-height: 200px
+        +textbox_textarea(darken($xanh, 15%), white)
+        +apply_placeholder
+    .textbox_wrapper
+        position: relative                 
+        margin-bottom: 10px
+        margin-top: 20px
+        .required_icon 
+            color: $do
+            position: absolute
+            top: 0
+            right: 25px
+            line-height: 50px
+            font-size: 2rem
+    button.btn_blue
+        margin-top: 50px
+        +home_button(#30bae7, white)
+
+        
