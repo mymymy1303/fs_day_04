@@ -7,6 +7,7 @@ var babel = require('gulp-babel');
 var browserSync = require('browser-sync').create();
 var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
+var wait = require('gulp-wait');
 
 // Copy IMG
 gulp.task('copy', function () {
@@ -16,10 +17,19 @@ gulp.task('copy', function () {
     .pipe(gulp.dest('./dist/img'));
 });
 
+//Copy awesome font
+gulp.task('copy-font', function () {
+  return gulp.src([
+      './src/fonts/**.*',
+    ])
+    .pipe(gulp.dest('./dist/fonts'));
+});
+
 // Nối file CSS
 gulp.task('noifile-css', function () {
   return gulp.src([
       'bower_components/bootstrap/dist/css/bootstrap.min.css', 
+      'bower_components/font-awesome/css/font-awesome.min.css',      
     ])
     .pipe(concat('thuvien.css'))
     .pipe(gulp.dest('./dist/css'));
@@ -38,8 +48,12 @@ gulp.task('noifile-js', function () {
 
 // Task này sẽ tìm tất cả file .sass trong thư mục src/styles sẽ build ra file .css ở thư mục dist/css
 gulp.task('taocss', function () {
-  return gulp.src('./src/styles/**/*.sass')
+  return gulp.src([
+    './src/styles/**/*.sass',
+    '!./src/styles/{**/\_*,**/\_*/**}.sass'
+  ])
     .pipe(sourcemaps.init())
+    .pipe(wait(200))
     .pipe(sass().on('error', sass.logError))
     .pipe(sourcemaps.write(''))
     .pipe(gulp.dest('./dist/css'))
@@ -90,6 +104,7 @@ gulp.task('browser-sync', function () {
 gulp.task('default', function () {
   gulp.start([
     'copy',
+    'copy-font',
     'noifile-css',
     'noifile-js',
     'taocss',

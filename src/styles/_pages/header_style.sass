@@ -1,0 +1,16 @@
+@import ../_core/all
+//Header
+header 
+    position: fixed
+    z-index: 999
+    top: 0
+    left: 0
+    background-color: $tim
+    width: 100%
+    min-height: 120px
+    display: flex
+    align-items: center
+    +horizontal_menu($tim)
+    ul
+        li.menu_active
+            background-color: darken($tim, 15%)

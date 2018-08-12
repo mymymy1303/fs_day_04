@@ -2,6 +2,7 @@ extends _layout/layout.pug
 block main
 
     main
+        //HOME SECTION
         section.home_welcome
             .container
                 .row
@@ -12,6 +13,7 @@ block main
                             |and we build awesome websites and mobile apps.
                         p
                             a.btn.btn_orange(href="#") work with us!
+        //SERVICES SECTION
         section.home_services
             .container
                 .row
@@ -22,12 +24,14 @@ block main
                             br
                             |to create awesome websites and applications. 
                 .row
+                    //LOOP FOR SERVICE BLOCKS
                     - var services_index = 0;
                     while services_index < 4
                         .col-sm-6.col-md-3.services_item
-                            img(src="./img/home_icon_" + ++services_index + ".png", alt="")
+                            img(src="./img/home_icon_" + ++services_index + ".png", alt="").img-fluid
                             h3 Lorem ipsum dolor
                             p Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis assumenda temporibus saepe, accusamus esse blanditiis.
+        //TEAM SECTION
         section.home_team
             .container
                 .row
@@ -35,6 +39,7 @@ block main
                         h2 meet out beautiful team
                         p We are a small team of designers and developers, who help brands with big ideas.
                 .row
+                    //LOOP FOR TEAM BLOCKS
                     - var team_index = 1
                     while team_index < 5
                         .col-sm-6.col-md-3
@@ -42,24 +47,21 @@ block main
                             h3 Lorem ipsum dolor
                             p.team_roles Lorem ipsum
                             p.team_description Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis assumenda temporibus saepe, accusamus esse blanditiis.
-                            .row.no-gutters
-                                .col-3.btn_social_media_wrapper
-                                    p
-                                        a.btn.btn_social_media(href="#")    
-                                            i.fab.fa-facebook-f
-                                .col-3.btn_social_media_wrapper
-                                    p
-                                        a.btn.btn_social_media(href="#")    
-                                            i.fab.fa-twitter
-                                .col-3.btn_social_media_wrapper
-                                    p
-                                        a.btn.btn_social_media(href="#")    
-                                            i.fab.fa-linkedin-in
-                                .col-3.btn_social_media_wrapper
-                                    p
-                                        a.btn.btn_social_media(href="#")    
-                                            i.fas.fa-envelope
+                            ul
+                                li
+                                    a.btn(href="#")
+                                        i.fa.fa-facebook
+                                li
+                                    a.btn(href="#")
+                                        i.fa.fa-twitter
+                                li
+                                    a.btn(href="#")
+                                        i.fa.fa-linkedin
+                                li
+                                    a.btn(href="#")
+                                        i.fa.fa-envelope                                
                             - team_index++
+        //SKILL SECTION
         section.home_skill
             .container-fluid
                 .row
@@ -70,6 +72,7 @@ block main
                             br
                             |assumenda aperiam, asperiores magni.
                 .row
+                    //LOOP FOR SKILL BLOCKS
                     - var title_index = 1
                     each skill_percentage, skill_index in {1:'90', 2:'75', 3:'70', 4:'85'}
                         .col-sm-6.col-md-3.circle_progress_wrapper
@@ -90,7 +93,7 @@ block main
                                     when 4
                                         p ui / ux
                         - title_index++
-        
+        //PORTFOLIO SECTION
         section.home_portfolio
             .container
                 .row
@@ -112,6 +115,7 @@ block main
                             li 
                                 a(href="") icons
                 .row.portfolio_works_wrapper
+                    //LOOP FOR PORTFOLIO BLOCKS
                     each works_index in [1,2,3,4]
                         .col-md-6
                             img.img-fluid(src="./img/home_works_" + works_index + ".png", alt="")
@@ -120,7 +124,7 @@ block main
                     .col
                         p 
                             a.btn.btn_green(href="#") load more projects         
-        
+        //FEEDBACK SECTION
         section.home_feedback
             .container
                 .row
@@ -141,7 +145,7 @@ block main
                                     .row
                                         .col
                                             p.feedback_roles CEO of Pinterest
-
+        //CONTACT SECTION
         section.home_contact
             .container
                 .row
